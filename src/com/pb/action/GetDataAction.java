@@ -10,7 +10,7 @@ import com.pb.entity.Street;
 import java.util.*;
 
 /**
- *»ñÈ¡·¿ĞÍĞÅÏ¢ÁĞ±í£¬³ÇÇø½ÖµÀĞÅÏ¢
+ *è·å–æˆ¿å‹ä¿¡æ¯åˆ—è¡¨ï¼ŒåŸåŒºè¡—é“ä¿¡æ¯
  */
 public class GetDataAction extends BaseAction {
     private HouseDao houseDao = new HouseDaoImpl();
@@ -24,7 +24,7 @@ public class GetDataAction extends BaseAction {
             HouseType houseType = (HouseType) obj;
             typeList.add(houseType);
         }
-        /** Éú³É¼¶ÁªÑ¡Ôñ²Ëµ¥*/
+        /** ç”Ÿæˆçº§è”é€‰æ‹©èœå•*/
         streetMap = new HashMap<>();
         disList = new ArrayList<District>();
         List<Object> districts = houseDao.findAll(District.class);

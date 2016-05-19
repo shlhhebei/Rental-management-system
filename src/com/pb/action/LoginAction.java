@@ -6,14 +6,14 @@ import com.pb.service.IUserService;
 import com.pb.service.impl.IUserServiceImpl;
 
 /**
- *µÇÂ½²Ù×÷Àà
- * ¿ÉÒÔÑéÖ¤ÓÃ»§ÊÇ·ñ´æÔÚ£¬ÃÜÂëÊÇ·ñÕıÈ·
+ *ç™»é™†æ“ä½œç±»
+ * å¯ä»¥éªŒè¯ç”¨æˆ·æ˜¯å¦å­˜åœ¨ï¼Œå¯†ç æ˜¯å¦æ­£ç¡®
  */
 public class LoginAction extends BaseAction {
     IUserService service = new IUserServiceImpl();
     HouseUser houseUser;
     public String login() {
-        //ÓÃÓÚ²âÊÔµÄ´úÂë
+        //ç”¨äºæµ‹è¯•çš„ä»£ç 
        /* HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(org.apache.struts2.StrutsStatics.HTTP_REQUEST);
         houseUser = (HouseUser) request.getAttribute("houseUser");*/
         if (service.validate(houseUser.getUsername())) {
@@ -23,11 +23,11 @@ public class LoginAction extends BaseAction {
                 session.put("user", user);
                 return SUCCESS;
             }
-            //Ìí¼ÓactionMessage£¬ÔÚ×ª·¢µÄÒ³Ãæ¿ÉÒÔÊ¹ÓÃ<s:actionMessage/>½ÓÊÕ
-            addActionMessage("ÃÜÂë²»ÕıÈ·");
+            //æ·»åŠ actionMessageï¼Œåœ¨è½¬å‘çš„é¡µé¢å¯ä»¥ä½¿ç”¨<s:actionMessage/>æ¥æ”¶
+            addActionMessage("å¯†ç ä¸æ­£ç¡®");
             return LOGIN;
         } else {
-            addActionMessage("ÓÃ»§Ãû²»´æÔÚ");
+            addActionMessage("ç”¨æˆ·åä¸å­˜åœ¨");
             return LOGIN;
         }
     }

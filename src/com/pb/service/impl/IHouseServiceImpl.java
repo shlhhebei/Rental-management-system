@@ -66,6 +66,14 @@ public class IHouseServiceImpl implements IHouseService {
     }
 
     /**
+     * 查询数据库内所有房屋列表
+     */
+    @Override
+    public Object[] findALL() {
+        return houseDao.findAll(House.class).toArray();
+    }
+
+    /**
      * 查询所有房屋列表
      * @param params Map类型的参数
      */

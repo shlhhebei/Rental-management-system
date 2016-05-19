@@ -37,6 +37,11 @@ public interface IHouseService {
 	 * @param id 房屋id
 	 */
 	HousePicture getPictureById(Integer id);
+
+	/**
+	 * 查询数据库内所有的房屋列表
+	 */
+	Object[] findALL();
 	
 	/**
 	 * 查询所有房屋列表

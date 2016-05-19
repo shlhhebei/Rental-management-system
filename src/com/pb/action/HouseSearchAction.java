@@ -27,13 +27,13 @@ public class HouseSearchAction extends BaseAction {
     @SuppressWarnings("unchecked")
     public String searchHouses(){
         Map params = new HashMap();
-        params.put("����",title);
-        params.put("�۸�", price);
-        params.put("����λ��",housePosition);
-        params.put("����", houseType);
-        params.put("���", houseArea);
+        params.put("标题",title);
+        params.put("价格", price);
+        params.put("房屋位置",housePosition);
+        params.put("房型", houseType);
+        params.put("面积", houseArea);
         Object[] houses = service.findAll(params);
-        //�ѻ�ȡ�ķ����б���Ϣ��ŵ�request�򣬴��ݵ���һ��action ��Ҳ����ͨ�����Ը�ֵ�ķ������ݣ�
+        //把获取的房屋列表信息存放到request域，传递到下一个action （也可以通过属性赋值的方法传递）
         HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(StrutsStatics.HTTP_REQUEST);
         request.setAttribute("houses",houses);
         return SUCCESS;

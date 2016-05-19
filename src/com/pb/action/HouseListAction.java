@@ -15,7 +15,7 @@ import java.util.List;
 public class HouseListAction extends BaseAction {
     private Page page;
     public String displayHouses(){
-        //获取一个request
+        //鑾峰彇涓�涓猺equest
         HttpServletRequest request= (HttpServletRequest) ActionContext.getContext().get(StrutsStatics.HTTP_REQUEST);
         Object[] houses = (Object[]) request.getAttribute("houses");
         List list = new ArrayList();

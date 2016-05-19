@@ -34,10 +34,17 @@
 		<action name="searchHouses" class="com.pb.action.HouseSearchAction" method="searchHouses">
 			<result name="success" type="chain">displayHouses</result>
 		</action>
+		<action name="getData" class="com.pb.action.GetDataAction" method="findData">
+			<result type="chain">housesData</result>
+		</action>
+		<action name="housesData" class="com.pb.action.HousesDataAction" method="findAllHouses">
+			<result type="chain">displayHouses</result>
+		</action>
 		<action name="displayHouses" class="com.pb.action.HouseListAction" method="displayHouses">
-			<result>/jsp/house_list.jsp</result>
+			<result>/jsp/main.jsp</result>
 		</action>
 	</package>
+
 	<!--为了支持JSON，需要在项目添加两个jar包：json-lib-2.3-jdk15.jar和 struts2-json-plugin-2.3.4.1.jar -->
 	<!--返回json数据--><!--package需要继承 json-default 包-->
 	<package name="data" namespace="/" extends="json-default">
@@ -47,9 +54,6 @@
 				<!--result默认会返回Action的所有成员变量，如果只想返回指定的部分数据，可以使用includeProperties参数-->
 				<param name="includeProperties">b</param>
 			</result>
-		</action>
-		<action name="getData" class="com.pb.action.GetDataAction" method="findData">
-			<result>/jsp/main.jsp</result>
 		</action>
 	</package>
     

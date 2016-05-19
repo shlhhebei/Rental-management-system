@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true">
+    <file url="file://$PROJECT_DIR$/src/com/pb/action/GetDataAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/pb/action/HouseListAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/pb/action/HouseSearchAction.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/pb/action/LoginAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/pb/action/RegisterAction.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/pb/dao/impl/HouseDaoImpl.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/pb/test/TestHibernate.java" charset="UTF-8" />
