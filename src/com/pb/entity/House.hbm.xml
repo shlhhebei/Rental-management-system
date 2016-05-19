@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pb.entity.House" table="HOUSE" >
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" length="50" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" length="2000" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="PRICE" precision="126" scale="0" />
+        </property>
+        <property name="pubdate" type="java.util.Date">
+            <column name="PUBDATE" length="7" />
+        </property>
+        <property name="adddate" type="java.util.Date">
+            <column name="ADDDATE" length="7" />
+        </property>
+        <property name="floorage" type="java.lang.Double">
+            <column name="FLOORAGE" precision="126" scale="0" />
+        </property>
+        <property name="contact" type="java.lang.String">
+            <column name="CONTACT" length="100" />
+        </property>
+        <many-to-one name="houseUser" class="com.pb.entity.HouseUser" fetch="select">
+            <column name="USER_ID" precision="9" scale="0" />
+        </many-to-one>
+        <many-to-one name="houseType" class="com.pb.entity.HouseType" fetch="select">
+            <column name="TYPE_ID" precision="9" scale="0" />
+        </many-to-one>
+        <many-to-one name="street" class="com.pb.entity.Street" fetch="select">
+            <column name="STREET_ID" precision="9" scale="0" />
+        </many-to-one>
+        
+        <!-- <set name="housePictures" inverse="true">
+            <key>
+                <column name="HOUSE_ID" precision="9" scale="0" />
+            </key>
+            <one-to-many class="com.pb.entity.HousePicture" />
+        </set> 
+        -->
+        <one-to-one name="picture" class="com.pb.entity.HousePicture" property-ref="houseId" cascade="all"  lazy="false"/>
+    </class>
+</hibernate-mapping>

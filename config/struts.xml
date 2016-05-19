@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<!--<constant name="struts.devMode" value="false" />-->
+	<constant name="struts.ui.theme" value="simple"/>
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<constant name="struts.custom.i18n.resources" value="message"/>
+	<!--  -->
+	<package name="default" namespace="/" extends="struts-default">
+		<!--用于测试result的多种跳转方式的action-->
+		<action name="testJump" class="com.pb.test.TestAction" method="testJump">
+			<!--URL只能传递字符型参数；如果想传递一个对象，需要把该对象包含到一个集合里，传递集合参数。例：直接传递houseUser=${houseUser}会出现404错误-->
+			<!--使用EL语言动态获取参数，需要该参数具有setter和getter方法-->
+			<!--<result name="success" type="redirect">login.action?houseUser.username=${houseUser.username}&amp;houseUser.password=${houseUser.password}</result>-->
+			<!--<result name="success" type="redirectAction">login?houseUser.username=${houseUser.username}&amp;houseUser.password=${houseUser.password}</result>-->
+			<result type="chain">login</result>
+		</action>
+		<!--用户登录action-->
+		<action name="login" class="com.pb.action.LoginAction" method="login">
+			<result name="success">/jsp/success.jsp</result>
+			<result name="login">/jsp/login.jsp</result>
+		</action>
+		<!--用户注册action-->
+		<action name="register" class="com.pb.action.RegisterAction" method="register">
+			<result>/jsp/success.jsp</result>
+			<result name="input">/jsp/register.jsp</result>
+			<result name="invalid.token">/jsp/register.jsp</result>
+			<interceptor-ref name="token"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		<!--房屋查询action-->
+		<action name="searchHouses" class="com.pb.action.HouseSearchAction" method="searchHouses">
+			<result name="success" type="chain">displayHouses</result>
+		</action>
+		<action name="displayHouses" class="com.pb.action.HouseListAction" method="displayHouses">
+			<result>/jsp/house_list.jsp</result>
+		</action>
+	</package>
+	<!--为了支持JSON，需要在项目添加两个jar包：json-lib-2.3-jdk15.jar和 struts2-json-plugin-2.3.4.1.jar -->
+	<!--返回json数据--><!--package需要继承 json-default 包-->
+	<package name="data" namespace="/" extends="json-default">
+		<action name="validateName" class="com.pb.action.ValidateAction" method="validateName">
+			<!--result的type要设置为json-->
+			<result type="json">
+				<!--result默认会返回Action的所有成员变量，如果只想返回指定的部分数据，可以使用includeProperties参数-->
+				<param name="includeProperties">b</param>
+			</result>
+		</action>
+		<action name="getData" class="com.pb.action.GetDataAction" method="findData">
+			<result>/jsp/main.jsp</result>
+		</action>
+	</package>
+    
+</struts>

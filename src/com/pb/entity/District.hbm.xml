@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pb.entity.District" table="DISTRICT">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID"/>
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" length="50" not-null="true" />
+        </property>
+         <!-- 区域—街道一对多映射  -->
+        <set name="streets" inverse="true" lazy="false">
+            <key>
+                <column name="DISTRICT_ID" precision="9" scale="0" />
+            </key>
+            <one-to-many class="com.pb.entity.Street" />
+        </set>
+    </class>
+</hibernate-mapping>

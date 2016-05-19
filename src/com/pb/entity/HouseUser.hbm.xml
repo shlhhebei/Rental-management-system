@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.pb.entity.HouseUser" table="HOUSE_USER">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" length="50" />
+        </property>
+        <property name="telephone" type="java.lang.String">
+            <column name="TELEPHONE" length="15" />
+        </property>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" length="50" />
+        </property>
+        <property name="isadmin" type="java.lang.String">
+            <column name="ISADMIN" length="5" />
+        </property>
+        <property name="realname" type="java.lang.String">
+            <column name="REALNAME" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

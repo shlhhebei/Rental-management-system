@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="json-lib-2.3-jdk15">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/json-lib-2.3-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/struts2-json-plugin-2.3.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

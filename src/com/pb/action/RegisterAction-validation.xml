@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC
+        "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<!--使用验证框架进行验证： 无需编写验证代码，只需一个配置文件，简化工作量，后期修改不需要修改代码，利于后期维护
+          该配置文件：
+                     1、必须与Action类在同一个目录下
+                     2、文件名必须为： Action类名-validation.xml
+                     3、只要符合上面两条原则，该配置文件就会被 自动识别
+                     4、对Action中所有的业务方法生效-->
+<validators>
+        <field name="houseUser.username">
+                <field-validator type="requiredstring">
+                        <param name="fieldName">houseUser.username</param>
+                        <param name="trim">true</param>
+                        <message>用户名不能为空（RegisterAction-validation.xml）</message>
+                </field-validator>
+                <field-validator type="stringlength">
+                        <param name="maxLength">20</param>
+                        <param name="minLength">4</param>
+                        <param name="trim">true</param>
+                        <message>用户名必须为4到20个字符（RegisterAction-validation.xml）</message>
+                </field-validator>
+        </field>
+        <field name="houseUser.password">
+                <field-validator type="requiredstring">
+                        <param name="fieldName">houseUser.password</param>
+                        <param name="trim">true</param>
+                        <message>密码不能为空（RegisterAction-validation.xml）</message>
+                </field-validator>
+                <field-validator type="stringlength">
+                        <param name="maxLength">20</param>
+                        <param name="minLength">6</param>
+                        <param name="trim">true</param>
+                        <message>密码必须为${minLength}到${maxLength}字符（RegisterAction-validation.xml）</message>
+                </field-validator>
+        </field>
+</validators>

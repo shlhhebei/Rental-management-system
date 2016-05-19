@@ -1,0 +1,42 @@
+项目过程所遇到的问题：
+1、把hql语句错写为sql语句：hql语句是只查一个表，关联其他表，sql语句必须查询所有相关表，就是相关表必须出现在from子句中
+         例如：查询标题为好房出租，房型为一室一厅，位置在知春路的房屋
+            String hql = "from House h where h.title like '%好房出租%' and h.houseType.name='一室一厅' and h.street.name='知春路'";
+
+2、session的关闭： 如果在dao层关闭了session，则控制层和视图层无法使用关联对象的导航，除主表外，关联查询的表的信息无法获取
+   出现异常：could not initialize proxy - no Session
+   解决办法：使用Spring管理项目，在web.xml中配置org.springframework.orm.hibernate3.support.OpenSessionInViewFilter过滤器，由视图层来管理session的开闭。
+
+3、使用Struts2的表单标签，其中需要增加<s:token/>标签，防止表单重复提交
+
+4、%--s:div标签可以异步刷新内容--%>
+
+5、URL传参：特点主要表现在以下几个方面：
+               1)URL地址法简洁易用，可同时传递多个字符型参数；
+               2)URL地址法可以很方便的在页面之间切换并传递参数，无需额外的处理，基于正常情况比较不会性能损失；
+               3)URL传递参数长度受限，最大为2K；
+               4)URL只能传递字符型参数；（如果直接传递一个对象，会出现404错误）
+               5)信息泄露：URL地址在客户端可见，导致会泄露信息，可能被黑客用来攻击系统。
+            常见应用问题：
+                1）因URL传递参数长度受限，最大为2K，在应用中可能会出现超出范围时的处理错误；
+                2）URL只能传递字符型参数，在应用中，经常会传递一些中文名的参数或URL地址，因为发送页面和接收页面的字符编码方式不一样而导致参数解析处理错误，
+                   参数包含中文时出现乱码或者参数接收错误；
+                3）Web程序中对字符编码的方法多种多样，但是有些方法对一些特殊字符，如：! @ # $& * ( ) = : / ; ? + '中的某些不能进行编码，因此对参数中包含某些
+                   特殊字符时不能正确处理，当参数中包含这些特殊字符时，软件接收处理出现异常；
+                4）URL可以传递一定长度大小字符型参数，在应用中经常通过URL接收的参数需要进一步进行逻辑处理，比如类型转换或者数字计算操作等，处理过程中开发人员
+                   可能会对参数在界面输入时限制处理不充分，而且开发人员在后续逻辑处理中过分信任传递过来的参数而未进行充分逻辑判断，导致在后续的逻辑处理中出现
+                   边界处理或者类型转换的错误，导致程序出现异常甚至崩溃；
+                5）URL地址中的参数经常与数据库SQL语句中的参数关联，如果开发人员对SQL语句参数化处理不完善，通过URL地址传递参数也容易引起SQL注入问题，参数中包含
+                   特殊字符、类型或者长度不符合要求时导致程序出错，甚至可以通过这个入口破坏或者获取数据库信息；
+                6）URL显示传递参数，容易产生信息泄露问题，一些关键信息URL地址在客户端可见，这些信息可能被黑客用来攻击系统。
+
+6、数据校验：
+                1）. 重写ActionSupport中的validate方法进行数据校验  如果有数据不符合规则,addFieldError(“字段名”,”错误提示”);或 addFieldError(“字段名”,getText(“错误信息的key”));
+                方法结束后,如果有错误,那么会到input对应的视图 ：  if (this.hasErrors()) { return INPUT;}
+                2）.在Action中也可以写validateXxx对不同的方法进行校验,例如validateAdd就是对add方法传入的参数进行校验
+                3）.编写校验规则文件
+                   给Action指定一个校验文件ActionName-validation.xml,例如UserAction-validation.xml
+                   给Action的某方法指定校验文件ActionClassName-actionName-validation.xml例如:UserAction-add-validation.xml表示一个action的<action name=“add” 对应的类是UserAction
+                   为了一个Action类可以处理多个请求，又可以对不同的请求进行验证，一般会在配置文件中使用通配符，例如 <action name="user_*" method="{1}" 那么 user_add.action 对应UserAction里的add方法，
+                   对应的验证文件是UserAction-user_add-validation.xml
+                4).在action业务方法内自己编写验证，，工作量大，但灵活，struts1中，在实体类内做验证，即在属性的setter和getter方法中做 限制

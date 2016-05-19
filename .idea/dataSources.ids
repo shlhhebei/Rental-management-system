@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - zufangguanli@localhost" uuid="641db47e-4449-4dc0-944a-044a3719bff6">
+    <database-info product="MySQL" version="5.6.21" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="zufangguanli"/>
+    <table name="district" schema="" catalog="zufangguanli" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSu77yM5L2/55So5bqP5YiX6Ieq5aKe6ZW/"/>
+      <column name="NAME" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="5Yy65Z+f5ZCN"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="STREET_REF_DISTRICT" table="street" schema="" catalog="zufangguanli" columns="DISTRICT_ID"/>
+    </table>
+    <table name="house" schema="" catalog="zufangguanli" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSu77yM5L2/55So5bqP5YiX6Ieq5aKe6ZW/"/>
+      <column name="USER_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="55So5oi3aWTvvIjlpJbplK7vvIk="/>
+      <column name="TYPE_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="5oi/5Z6LaWTvvIjlpJbplK7vvIk="/>
+      <column name="TITLE" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="5qCH6aKY"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12" remarks="5o+P6L+w"/>
+      <column name="PRICE" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7" remarks="5Lu35qC8"/>
+      <column name="PUBDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" remarks="5oi/5Lqn6K+B5pel5pyf"/>
+      <column name="ADDDATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91" remarks="5Y+R5biD5pe26Ze0"/>
+      <column name="FLOORAGE" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7" remarks="6Z2i56ev"/>
+      <column name="CONTACT" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12" remarks="6IGU57O75pa55byP"/>
+      <column name="STREET_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="6KGX6YGTaWTvvIjlpJbplK7vvIk="/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="HOUSE_REF_HOUSE_TYPE" columns="TYPE_ID" ref-table="house_type" ref-schema="" ref-catalog="zufangguanli" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="HOUSE_REF_HOUSE_USER" columns="USER_ID" ref-table="house_user" ref-schema="" ref-catalog="zufangguanli" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="HOUSE_REF_STREET" columns="STREET_ID" ref-table="street" ref-schema="" ref-catalog="zufangguanli" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="HOUSE_PICTURE_REF_HOUSE" table="house_picture" schema="" catalog="zufangguanli" columns="HOUSE_ID"/>
+      <index name="HOUSE_REF_HOUSE_TYPE" unique="false" columns="TYPE_ID"/>
+      <index name="HOUSE_REF_HOUSE_USER" unique="false" columns="USER_ID"/>
+      <index name="HOUSE_REF_STREET" unique="false" columns="STREET_ID"/>
+    </table>
+    <table name="house_picture" schema="" catalog="zufangguanli" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSu77yM5L2/55So5bqP5YiX6Ieq5aKe6ZW/"/>
+      <column name="HOUSE_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="56ef5oi/5L+h5oGvSUTvvIjlpJbplK7vvIk="/>
+      <column name="TITLE" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="5Zu+54mH5ZCN56ew"/>
+      <column name="URL" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12" remarks="5Zu+54mH5Zyw5Z2A"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="HOUSE_PICTURE_REF_HOUSE" columns="HOUSE_ID" ref-table="house" ref-schema="" ref-catalog="zufangguanli" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="HOUSE_PICTURE_REF_HOUSE" unique="false" columns="HOUSE_ID"/>
+    </table>
+    <table name="house_type" schema="" catalog="zufangguanli" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSu77yM5L2/55So5bqP5YiX6Ieq5aKe6ZW/"/>
+      <column name="NAME" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12" remarks="5oi/5Z6L5ZCN56ew"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="HOUSE_REF_HOUSE_TYPE" table="house" schema="" catalog="zufangguanli" columns="TYPE_ID"/>
+    </table>
+    <table name="house_user" schema="" catalog="zufangguanli" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSu77yM5L2/55So5bqP5YiX6Ieq5aKe6ZW/"/>
+      <column name="USERNAME" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="55So5oi35ZCN"/>
+      <column name="PASSWORD" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="5a+G56CB"/>
+      <column name="TELEPHONE" sqlType="VARCHAR" precision="15" scale="0" nullable="true" jdbcType="12" remarks="55S16K+d5Y+356CB"/>
+      <column name="REALNAME" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="55yf5a6e5aeT5ZCN"/>
+      <column name="ISADMIN" sqlType="VARCHAR" precision="5" scale="0" nullable="true" jdbcType="12" remarks="5piv5ZCm5Li6566h55CG5ZGY"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <exported-key name="HOUSE_REF_HOUSE_USER" table="house" schema="" catalog="zufangguanli" columns="USER_ID"/>
+    </table>
+    <table name="street" schema="" catalog="zufangguanli" type="TABLE">
+      <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" remarks="5Li76ZSu77yM5L2/55So5bqP5YiX6Ieq5aKe6ZW/"/>
+      <column name="NAME" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12" remarks="6KGX6YGT5ZCN"/>
+      <column name="DISTRICT_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" remarks="5omA5bGe5Z+O5Yy677yI5aSW6ZSu77yJ"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+      <foreign-key name="STREET_REF_DISTRICT" columns="DISTRICT_ID" ref-table="district" ref-schema="" ref-catalog="zufangguanli" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="HOUSE_REF_STREET" table="house" schema="" catalog="zufangguanli" columns="STREET_ID"/>
+      <index name="STREET_REF_DISTRICT" unique="false" columns="DISTRICT_ID"/>
+    </table>
+  </data-source>
+</component>
