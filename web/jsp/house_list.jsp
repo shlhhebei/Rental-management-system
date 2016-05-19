@@ -27,6 +27,9 @@ String path = request.getContextPath();
 				<td>
 					<dl>
 						<dt>
+							<%--Struts2的动态方法调用 在action的名字中使用感叹号(!)来标识要调用的方法名，其语法格
+                                式为 actionName!methodName.action
+                                提示，这种调用方式会带来安全隐患,不建议使用--%>
 							<s:a href="house!show.action?house.id=%{id}">
 								<s:property value="title"/>
 							</s:a>

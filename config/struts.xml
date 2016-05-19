@@ -43,6 +43,9 @@
 		<action name="displayHouses" class="com.pb.action.HouseListAction" method="displayHouses">
 			<result>/jsp/main.jsp</result>
 		</action>
+		<action name="house" class="com.pb.action.HouseAction">
+			<result>/jsp/house.jsp</result>
+		</action>
 	</package>
 
 	<!--为了支持JSON，需要在项目添加两个jar包：json-lib-2.3-jdk15.jar和 struts2-json-plugin-2.3.4.1.jar -->

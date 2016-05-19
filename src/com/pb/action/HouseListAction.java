@@ -15,6 +15,8 @@ import java.util.List;
 public class HouseListAction extends BaseAction {
     private Page page;
     public String displayHouses(){
+        //获取一个page对象
+        page = new Page();
         //获取一个request
         HttpServletRequest request= (HttpServletRequest) ActionContext.getContext().get(StrutsStatics.HTTP_REQUEST);
         Object[] houses = (Object[]) request.getAttribute("houses");
@@ -23,6 +25,7 @@ public class HouseListAction extends BaseAction {
             list.add(houses[i]);
         }
         page.setList(list);
+        page.setTotalCount(page.getList().size());
         return SUCCESS;
     }
 

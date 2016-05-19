@@ -152,7 +152,7 @@ public class BaseDaoImpl<T> implements IBaseDao<T> {
 			log.error("find by HQL ", re);
 			throw re;
 		} finally{
-			closeSession();
+			//closeSession();
 		}
 	}
 	
